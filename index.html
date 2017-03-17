@@ -21,14 +21,88 @@
       }
 
       .g-sidebar {
+        position: absolute;
+        top: 100%;
+        /*animation: a1 1s;*/
         width: 339px;
-        background: url("img/x9_01.png") no-repeat 0 0;
         float: left;
+        background: #40a6cc;
+        /*transition: all .3s;*/
       }
 
       .g-main {
-        margin-left: 339px;
+        margin-left: 100%;
+        /*animation: a3 1s;*/
+         /*animation-delay: 2s; */
+        background: #40a6cc;
+        /*transition: all .3s;*/
+      }
+
+      .m-search {
+        width: 0;
+        /*animation: a4 1s;*/
+        /*animation-delay: 3s;*/
+        height: inherit;
         background: url("img/x9_02.png") no-repeat 0 0;
+        opacity: 0;
+        background-size: cover;
+      }
+
+      .m-list {
+        position: absolute;
+        bottom: 100%;
+        /*animation: a2 1s;*/
+        /*animation-delay: 1s;*/
+        width: inherit;
+        height: inherit;
+        background: url("img/x9_01.png") no-repeat 0 0;
+        background-size: cover;
+        opacity: 0;
+        /*transition: all .3s;*/
+      }
+
+      .animation {
+        top: 0;
+      }
+
+      .animation {
+        margin-left: 339px;
+      }
+
+      @keyframes a1 {
+        from { top: 100%; }
+        to { top: 0; }
+      }
+
+      @keyframes a2 {
+        from {
+          bottom: 100%;
+          opacity: 0;
+        }
+        to {
+          bottom: 0;
+          opacity: 1;
+        }
+      }
+
+      @keyframes a3 {
+        from {
+          margin-left: 100%;
+        }
+        to {
+          margin-left: 339px;
+        }
+      }
+
+      @keyframes a4 {
+        from {
+          width: 0;
+          opacity: 0;
+        }
+        to {
+          width: 100%;
+          opacity: 1;
+        }
       }
     </style>
 
@@ -40,7 +114,32 @@
     <![endif]-->
   </head>
   <body>
-    <div class="g-sidebar"></div>
-    <div class="g-main"></div>
+    <div class="g-sidebar">
+      <div class="m-list">
+        
+      </div>
+    </div>
+    <div class="g-main">
+      <div class="m-search">
+        
+      </div>
+    </div>
+    <script src="vendor/jquery.js"></script>
+    <script>
+      console.log(11);
+      $(function() {
+        var animate = function() {
+          $('.m-list').animate({bottom: 0, opacity: 1}, 1500, function() {
+            $('.g-main').animate({'margin-left': '339px'}, 1500, function() {
+              $('.m-search').animate({width: '100%', opacity: 1}, 1500);
+            });
+          });
+        }
+
+        $('.g-sidebar').animate({
+          top: 0
+        }, 1500, animate);
+      });
+    </script>
   </body>
 </html>
